@@ -1,0 +1,10 @@
+C:\Users\Administrator\source\repos\Assignment1\Assignment1\bin\Debug\Assignment1.exe.config
+C:\Users\Administrator\source\repos\Assignment1\Assignment1\bin\Debug\Assignment1.exe
+C:\Users\Administrator\source\repos\Assignment1\Assignment1\bin\Debug\Assignment1.pdb
+C:\Users\Administrator\source\repos\Assignment1\Assignment1\obj\Debug\GPLAssignment.MainForm.resources
+C:\Users\Administrator\source\repos\Assignment1\Assignment1\obj\Debug\Assignment1.Properties.Resources.resources
+C:\Users\Administrator\source\repos\Assignment1\Assignment1\obj\Debug\GPLAssignment.csproj.GenerateResource.cache
+C:\Users\Administrator\source\repos\Assignment1\Assignment1\obj\Debug\Assignment1.exe
+C:\Users\Administrator\source\repos\Assignment1\Assignment1\obj\Debug\Assignment1.pdb
+C:\Users\Administrator\source\repos\Assignment1\Assignment1\obj\Debug\GPLAssignment.csprojAssemblyReference.cache
+C:\Users\Administrator\source\repos\Assignment1\Assignment1\bin\Debug\Assignment1.xml
