@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 using GPLAssignment.shape;
 using System.IO;
+using System.Net.Http;
 
 namespace GPLAssignment
 {
@@ -307,9 +308,19 @@ namespace GPLAssignment
             fWriter.Close();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private async Task label1_ClickAsync(object sender, EventArgs e)
         {
+           
+    }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/yugesh100/GPLassignment");
+        }
+
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/yugesh100/GPLassignment");
         }
     }
     }
