@@ -312,12 +312,6 @@ namespace GPLAssignment
         {
            
     }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://github.com/yugesh100/GPLassignment");
-        }
-
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://github.com/yugesh100/GPLassignment");
