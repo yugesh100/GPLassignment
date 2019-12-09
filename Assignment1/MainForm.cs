@@ -251,7 +251,7 @@ namespace GPLAssignment
             int y = this.paintPanel.Height / 4;
            
             Shapes Triangle = factory.getShape(shape);
-            Triangle.set(brushColor, x, y, side1, side2);
+            Triangle.set(brushColor, moveX ?? x, moveY ?? y, side1, side2);
             Triangle.draw(graphics);
         }
         private void drawRectangle(int length,int breadth)
@@ -260,7 +260,7 @@ namespace GPLAssignment
             int x = this.paintPanel.Width / 7;
             int y = this.paintPanel.Height / 7;
             Shapes rectangle = factory.getShape(shape);
-            rectangle.set(brushColor, x, y, length, breadth);
+            rectangle.set(brushColor, moveX ?? x, moveY ?? y, length, breadth);
             rectangle.draw(graphics);
         }
         private void drawCircle(int radius)
@@ -270,8 +270,9 @@ namespace GPLAssignment
             int y = this.paintPanel.Height / 4;
 
             Shapes circle = factory.getShape(shape);
-            circle.set(brushColor, x, y, radius);
+            circle.set(brushColor, moveX ?? x, moveY ?? y, radius);
             circle.draw(graphics);
+
         }
         private void moveTo(int x, int y)
         {
