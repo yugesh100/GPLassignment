@@ -25,7 +25,9 @@ namespace GPLAssignment
         private bool startPaint = false;
         private float brushSize = 1;
         private Color brushColor = Color.Black;
-
+        /// <summary>
+        /// main form
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
@@ -41,17 +43,28 @@ namespace GPLAssignment
             if (!startPaint) return;
 
             Pen p = new Pen(this.brushColor, brushSize);
-            //Drawing the line
+            /// <summary>
+            /// Drawing the line
+            /// </summary>
+
             graphics.DrawLine(p, new Point(initX ?? e.X, initY ?? e.Y), new Point(e.X, e.Y));
             initX = e.X;
             initY = e.Y;
         }
-
-        private void paintPanel_MouseDown(object sender, MouseEventArgs e)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void paintPanel_MouseDown(object sender, MouseEventArgs e)///to paint mouse down
         {
             startPaint = true;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void paintPanel_MouseUp(object sender, MouseEventArgs e)
         {
             startPaint = false;
@@ -79,14 +92,14 @@ namespace GPLAssignment
             graphics.Clear(Color.White);
         }
 
-        private void resetButton_Click(object sender, EventArgs e)
+        private void resetButton_Click(object sender, EventArgs e)/// to reset button from original position
         {
             
             initX = 0;
             initY = 0;
         }
 
-        private void circlButton_Click(object sender, EventArgs e)
+        private void circlButton_Click(object sender, EventArgs e)/// to draw circle
         {
             string shape = "circle";
             int x = this.paintPanel.Width / 4;
@@ -96,8 +109,12 @@ namespace GPLAssignment
             circle.set(brushColor, x, y, x/2);
             circle.draw(graphics);
         }
-
-        private void rectangleButton_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"> parameter</param>
+        /// <param name="e">  parameter</param>
+        private void rectangleButton_Click(object sender, EventArgs e)  /// to draw rectangle
         {
             string  shape = "rectangle";
 
@@ -109,7 +126,7 @@ namespace GPLAssignment
             rectangle.draw(graphics);
         }
 
-        private void triangleButton_Click(object sender, EventArgs e)
+        private void triangleButton_Click(object sender, EventArgs e)/// to draw triangle
         {
             string shape = "triangle";
 
@@ -120,31 +137,37 @@ namespace GPLAssignment
             Triangle.set(brushColor, x, y, x / 2, y / 2);
             Triangle.draw(graphics);
         }
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender">Parameter</param>
+        /// <param name="e"></param>
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)  ///to exit the form
         {
             Application.Exit();
         }
-
-        private void executeButton_Click(object sender, EventArgs e)
+        private void executeButton_Click(object sender, EventArgs e) /// to execute command box
         {
             string command = textBox2.Text;
             executeCommand(command);
 
         }
-
-        private void executeCommand(string command)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="command"> to clear command</param>
+        private void executeCommand(string command) // to clear the panel
         {
-            if (!string.IsNullOrEmpty(command) && command.Contains("clear"))
+            if (!string.IsNullOrEmpty(command) && command.Contains("clear"))/// check the parameter 
             {
                 graphics.Clear(Color.White);
             }
-            else if (!string.IsNullOrEmpty(command) && command.Contains("reset"))
+            else if (!string.IsNullOrEmpty(command) && command.Contains("reset"))///check the parameter
             {
                 initX = 0;
                 initY = 0;
             }
-            else if (!string.IsNullOrEmpty(command) && command.Contains("rectangle"))
+            else if (!string.IsNullOrEmpty(command) && command.Contains("rectangle"))/// check the parameter
             {
                 string[] strlist = command.Split(' ');
                 if (validateInput(strlist[1], strlist[2]))
@@ -154,7 +177,7 @@ namespace GPLAssignment
                     drawRectangle(length,breadth);
                 }
             }
-            else if (!string.IsNullOrEmpty(command) && command.Contains("circle"))
+            else if (!string.IsNullOrEmpty(command) && command.Contains("circle"))///to check valid parameter
             {
                 string[] strlist = command.Split(' ');
                 if (validateInput(strlist[1]))
@@ -164,7 +187,7 @@ namespace GPLAssignment
                 }
                
             }
-            else if (!string.IsNullOrEmpty(command) && command.Contains("triangle"))
+            else if (!string.IsNullOrEmpty(command) && command.Contains("triangle"))/// to check valid parameter
             {
                 string[] strlist = command.Split(' ');
                 if (validateInput(strlist[1], strlist[2]))
@@ -174,7 +197,7 @@ namespace GPLAssignment
                     drawTriangle(side1, side2);
                 }
             }
-            else if (!string.IsNullOrEmpty(command) && command.Contains("moveto"))
+            else if (!string.IsNullOrEmpty(command) && command.Contains("moveto"))/// to  check valid parameter
             {
                 string[] strlist = command.Split(' ');
                 if (validateInput(strlist[1], strlist[2]))
@@ -184,7 +207,7 @@ namespace GPLAssignment
                     moveTo(x, y);
                 }
             }
-            else if (!string.IsNullOrEmpty(command) && command.Contains("drawto"))
+            else if (!string.IsNullOrEmpty(command) && command.Contains("drawto"))/// to check valid parameter
             {
                 string[] strlist = command.Split(' ');
                 if (validateInput(strlist[1], strlist[2]))
@@ -200,7 +223,7 @@ namespace GPLAssignment
 
         private bool validateInput(string param1, string param2)
         {
-            if (!param1.All(char.IsNumber) || !param2.All(char.IsNumber))
+            if (!param1.All(char.IsNumber) || !param2.All(char.IsNumber)) ///to check valid command
             {
                 MessageBox.Show("Input error .please type number only ");
                 return false;
@@ -211,7 +234,7 @@ namespace GPLAssignment
 
         private bool validateInput(string param1)
         {
-            if (!param1.All(char.IsNumber))
+            if (!param1.All(char.IsNumber))/// to check valid command
             {
                 MessageBox.Show("Input error .please type number only ");
                 return false;
@@ -256,6 +279,11 @@ namespace GPLAssignment
             moveX = x;
             moveY = y;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"> x coordinate</param>
+        /// <param name="y">y coordinate </param>
         private void drawTo(int x, int y)
         {
             Pen p = new Pen(this.brushColor, brushSize);
@@ -302,7 +330,7 @@ namespace GPLAssignment
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string commands = this.multilineCommandTextBox.Text;
+            string commands = this.multilineCommandTextBox.Text;    ///multiline command box
             StreamWriter fWriter = File.CreateText("C:\\inputcommand.txt");
             fWriter.WriteLine(commands);
             fWriter.Close();

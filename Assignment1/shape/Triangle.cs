@@ -1,8 +1,8 @@
 ﻿using System.Drawing;
 
-namespace GPLAssignment.shape
+ namespace GPLAssignment.shape
 {
-    internal class Triangle : Shape
+    public class Triangle : Shape
     {
         int width, height;
         public Triangle() : base()

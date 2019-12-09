@@ -4,6 +4,52 @@
         <name>Assignment1</name>
     </assembly>
     <members>
+        <member name="M:GPLAssignment.MainForm.#ctor">
+            <summary>
+            main form
+            </summary>
+        </member>
+        <member name="M:GPLAssignment.MainForm.paintPanel_MouseDown(System.Object,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:GPLAssignment.MainForm.paintPanel_MouseUp(System.Object,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:GPLAssignment.MainForm.rectangleButton_Click(System.Object,System.EventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"> parameter</param>
+            <param name="e">  parameter</param>
+        </member>
+        <member name="M:GPLAssignment.MainForm.exitToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender">Parameter</param>
+            <param name="e"></param>
+        </member>
+        <member name="M:GPLAssignment.MainForm.executeCommand(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="command"> to clear command</param>
+        </member>
+        <member name="M:GPLAssignment.MainForm.drawTo(System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="x"> x coordinate</param>
+            <param name="y">y coordinate </param>
+        </member>
         <member name="F:GPLAssignment.MainForm.components">
             <summary>
             Required designer variable.

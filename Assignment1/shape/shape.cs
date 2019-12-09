@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GPLAssignment.shape
 {
-    abstract class Shape:Shapes
+   public  abstract class Shape:Shapes
     {
         protected Color colour; //shape's colour
         protected int x, y; //not I could use c# properties for this
