@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Assignment1</name>
+    </assembly>
+    <members>
+        <member name="M:GPLAssignment.MainForm.#ctor">
+            <summary>
+            main form
+            </summary>
+        </member>
+        <member name="M:GPLAssignment.MainForm.paintPanel_MouseDown(System.Object,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:GPLAssignment.MainForm.paintPanel_MouseUp(System.Object,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:GPLAssignment.MainForm.rectangleButton_Click(System.Object,System.EventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"> parameter</param>
+            <param name="e">  parameter</param>
+        </member>
+        <member name="M:GPLAssignment.MainForm.exitToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender">Parameter</param>
+            <param name="e"></param>
+        </member>
+        <member name="M:GPLAssignment.MainForm.executeCommand(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="command"> to clear command</param>
+        </member>
+        <member name="M:GPLAssignment.MainForm.drawTo(System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="x"> x coordinate</param>
+            <param name="y">y coordinate </param>
+        </member>
+        <member name="F:GPLAssignment.MainForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:GPLAssignment.MainForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:GPLAssignment.MainForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:GPLAssignment.Program.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="T:GPLAssignment.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:GPLAssignment.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:GPLAssignment.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+    </members>
+</doc>
