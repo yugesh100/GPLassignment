@@ -25,7 +25,9 @@ namespace GPLAssignment
         private bool startPaint = false;
         private float brushSize = 1;
         private Color brushColor = Color.Black;
-
+        /// <summary>
+        /// main form
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
@@ -41,17 +43,28 @@ namespace GPLAssignment
             if (!startPaint) return;
 
             Pen p = new Pen(this.brushColor, brushSize);
-            //Drawing the line
+            /// <summary>
+            /// Drawing the line
+            /// </summary>
+
             graphics.DrawLine(p, new Point(initX ?? e.X, initY ?? e.Y), new Point(e.X, e.Y));
             initX = e.X;
             initY = e.Y;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void paintPanel_MouseDown(object sender, MouseEventArgs e)///to paint mouse down
         {
             startPaint = true;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void paintPanel_MouseUp(object sender, MouseEventArgs e)
         {
             startPaint = false;
@@ -96,7 +109,11 @@ namespace GPLAssignment
             circle.set(brushColor, x, y, x/2);
             circle.draw(graphics);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"> parameter</param>
+        /// <param name="e">  parameter</param>
         private void rectangleButton_Click(object sender, EventArgs e)  /// to draw rectangle
         {
             string  shape = "rectangle";
@@ -120,19 +137,25 @@ namespace GPLAssignment
             Triangle.set(brushColor, x, y, x / 2, y / 2);
             Triangle.draw(graphics);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender">Parameter</param>
+        /// <param name="e"></param>
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)  ///to exit the form
         {
             Application.Exit();
         }
-
         private void executeButton_Click(object sender, EventArgs e) /// to execute command box
         {
             string command = textBox2.Text;
             executeCommand(command);
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="command"> to clear command</param>
         private void executeCommand(string command) // to clear the panel
         {
             if (!string.IsNullOrEmpty(command) && command.Contains("clear"))/// check the parameter 
@@ -228,7 +251,7 @@ namespace GPLAssignment
             int y = this.paintPanel.Height / 4;
            
             Shapes Triangle = factory.getShape(shape);
-            Triangle.set(brushColor, x, y, side1, side2);
+            Triangle.set(brushColor, moveX ?? x, moveY ?? y, side1, side2);
             Triangle.draw(graphics);
         }
         private void drawRectangle(int length,int breadth)
@@ -237,7 +260,7 @@ namespace GPLAssignment
             int x = this.paintPanel.Width / 7;
             int y = this.paintPanel.Height / 7;
             Shapes rectangle = factory.getShape(shape);
-            rectangle.set(brushColor, x, y, length, breadth);
+            rectangle.set(brushColor, moveX ?? x, moveY ?? y, length, breadth);
             rectangle.draw(graphics);
         }
         private void drawCircle(int radius)
@@ -247,8 +270,9 @@ namespace GPLAssignment
             int y = this.paintPanel.Height / 4;
 
             Shapes circle = factory.getShape(shape);
-            circle.set(brushColor, x, y, radius);
+            circle.set(brushColor, moveX ?? x, moveY ?? y, radius);
             circle.draw(graphics);
+
         }
         private void moveTo(int x, int y)
         {
@@ -256,6 +280,11 @@ namespace GPLAssignment
             moveX = x;
             moveY = y;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"> x coordinate</param>
+        /// <param name="y">y coordinate </param>
         private void drawTo(int x, int y)
         {
             Pen p = new Pen(this.brushColor, brushSize);
@@ -288,24 +317,54 @@ namespace GPLAssignment
         {
             try
             {
-                StreamReader s = File.OpenText("c:\\inputcommand.txt");
-                string lines = s.ReadToEnd();
-                multilineCommandTextBox.Text = lines;
+                OpenFileDialog sfd = new OpenFileDialog();
+                sfd.InitialDirectory = @"C:\";
+                sfd.RestoreDirectory = true;
+                sfd.FileName = "*.txt";
+                sfd.DefaultExt = "txt";
+                sfd.Filter = "txt files (*.txt)| *.txt";
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    Stream fileStream = sfd.OpenFile();
+                    StreamReader sw = new StreamReader(fileStream);
+                    string lines = sw.ReadToEnd();
+                    multilineCommandTextBox.Text = lines;
+                    sw.Close();
+                    fileStream.Close();
+                   
+                }
+               
 
             }
             catch (FileNotFoundException)
             {
-                MessageBox.Show("Error", "Cannot find limerick.txt");
+                MessageBox.Show("Error", "Cannot find text file");
 
             }
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string commands = this.multilineCommandTextBox.Text;
-            StreamWriter fWriter = File.CreateText("C:\\inputcommand.txt");
-            fWriter.WriteLine(commands);
-            fWriter.Close();
+            string commands = this.multilineCommandTextBox.Text;    ///multiline command box
+
+            //StreamWriter fWriter = File.CreateText("C:\\inputcommand.txt");
+            //fWriter.WriteLine(commands);
+            // fWriter.Close();
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.InitialDirectory = @"C:\";
+            sfd.RestoreDirectory = true;
+            sfd.FileName = "*.txt";
+            sfd.DefaultExt = "txt";
+            sfd.Filter = "txt files (*.txt)| *.txt";
+            if (sfd.ShowDialog() ==DialogResult.OK)
+            {
+                Stream fileStream = sfd.OpenFile();
+                StreamWriter sw = new StreamWriter(fileStream);
+                sw.Write(multilineCommandTextBox.Text);
+                sw.Close();
+                fileStream.Close();
+                multilineCommandTextBox.Clear();
+            }
         }
 
         private async Task label1_ClickAsync(object sender, EventArgs e)
