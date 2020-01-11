@@ -23,6 +23,27 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
+        <member name="M:GPLAssignment.MainForm.paintBrushSizeComboBox_SelectedIndexChanged(System.Object,System.EventArgs)">
+             <summary>
+             
+            combobox paint brush </summary>
+             <param name="sender"> parameter</param>
+             <param name="e"> events argument</param>
+        </member>
+        <member name="M:GPLAssignment.MainForm.clearButton_Click(System.Object,System.EventArgs)">
+            <summary>
+            clean button
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:GPLAssignment.MainForm.resetButton_Click(System.Object,System.EventArgs)">
+            <summary>
+            Reset to initial position where x=0 and y =0
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
         <member name="M:GPLAssignment.MainForm.rectangleButton_Click(System.Object,System.EventArgs)">
             <summary>
             

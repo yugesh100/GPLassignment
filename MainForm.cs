@@ -71,7 +71,11 @@ namespace GPLAssignment
             //initX = null;
             //initY = null;
         }
-
+        /// <summary>
+        /// 
+        ///combobox paint brush </summary>
+        /// <param name="sender"> parameter</param>
+        /// <param name="e"> events argument</param>
         private void paintBrushSizeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.brushSize = float.Parse(paintBrushSizeComboBox.SelectedItem.ToString());
@@ -86,15 +90,23 @@ namespace GPLAssignment
                 paintColorButton.BackColor = c.Color;
             }
         }
-
+        /// <summary>
+        /// clean button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void clearButton_Click(object sender, EventArgs e)
         {
             graphics.Clear(Color.White);
         }
-
+        /// <summary>
+        /// Reset to initial position where x=0 and y =0
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void resetButton_Click(object sender, EventArgs e)/// to reset button from original position
         {
-            
+
             initX = 0;
             initY = 0;
         }
@@ -106,7 +118,7 @@ namespace GPLAssignment
             int y = this.paintPanel.Height / 4;
 
             Shapes circle = factory.getShape(shape);
-            circle.set(brushColor, x, y, x/2);
+            circle.set(brushColor, x, y, x / 2);
             circle.draw(graphics);
         }
         /// <summary>
@@ -116,13 +128,13 @@ namespace GPLAssignment
         /// <param name="e">  parameter</param>
         private void rectangleButton_Click(object sender, EventArgs e)  /// to draw rectangle
         {
-            string  shape = "rectangle";
+            string shape = "rectangle";
 
             int x = this.paintPanel.Width / 4;
             int y = this.paintPanel.Height / 4;
 
             Shapes rectangle = factory.getShape(shape);
-            rectangle.set(brushColor, x, y, x / 2,  y/2);
+            rectangle.set(brushColor, x, y, x / 2, y / 2);
             rectangle.draw(graphics);
         }
 
@@ -158,26 +170,26 @@ namespace GPLAssignment
         /// <param name="command"> to clear command</param>
         private void executeCommand(string command) // to clear the panel
         {
-            if (!string.IsNullOrEmpty(command) && command.Contains("clear"))/// check the parameter 
+            if (!string.IsNullOrEmpty(command) && command.Contains("CLEAR"))/// check the parameter 
             {
                 graphics.Clear(Color.White);
             }
-            else if (!string.IsNullOrEmpty(command) && command.Contains("reset"))///check the parameter
+            else if (!string.IsNullOrEmpty(command) && command.Contains("RESET"))///check the parameter
             {
                 initX = 0;
                 initY = 0;
             }
-            else if (!string.IsNullOrEmpty(command) && command.Contains("rectangle"))/// check the parameter
+            else if (!string.IsNullOrEmpty(command) && command.Contains("RECTANGLE"))/// check the parameter
             {
                 string[] strlist = command.Split(' ');
                 if (validateInput(strlist[1], strlist[2]))
                 {
                     int length = Int16.Parse(strlist[1]);
                     int breadth = Int16.Parse(strlist[2]);
-                    drawRectangle(length,breadth);
+                    drawRectangle(length, breadth);
                 }
             }
-            else if (!string.IsNullOrEmpty(command) && command.Contains("circle"))///to check valid parameter
+            else if (!string.IsNullOrEmpty(command) && command.Contains("CIRCLE"))///to check valid parameter
             {
                 string[] strlist = command.Split(' ');
                 if (validateInput(strlist[1]))
@@ -185,9 +197,9 @@ namespace GPLAssignment
                     int radius = Int16.Parse(strlist[1]);
                     drawCircle(radius);
                 }
-               
+
             }
-            else if (!string.IsNullOrEmpty(command) && command.Contains("triangle"))/// to check valid parameter
+            else if (!string.IsNullOrEmpty(command) && command.Contains("TRIANGLE"))/// to check valid parameter
             {
                 string[] strlist = command.Split(' ');
                 if (validateInput(strlist[1], strlist[2]))
@@ -197,7 +209,7 @@ namespace GPLAssignment
                     drawTriangle(side1, side2);
                 }
             }
-            else if (!string.IsNullOrEmpty(command) && command.Contains("moveto"))/// to  check valid parameter
+            else if (!string.IsNullOrEmpty(command) && command.Contains("MOVETO"))/// to  check valid parameter
             {
                 string[] strlist = command.Split(' ');
                 if (validateInput(strlist[1], strlist[2]))
@@ -207,7 +219,7 @@ namespace GPLAssignment
                     moveTo(x, y);
                 }
             }
-            else if (!string.IsNullOrEmpty(command) && command.Contains("drawto"))/// to check valid parameter
+            else if (!string.IsNullOrEmpty(command) && command.Contains("DRAWTO"))/// to check valid parameter
             {
                 string[] strlist = command.Split(' ');
                 if (validateInput(strlist[1], strlist[2]))
@@ -217,7 +229,7 @@ namespace GPLAssignment
                     drawTo(x, y);
                 }
 
-             
+
             }
         }
 
@@ -243,18 +255,18 @@ namespace GPLAssignment
             return true;
         }
 
-        private void drawTriangle(int side1,int side2)
+        private void drawTriangle(int side1, int side2)
         {
             string shape = "triangle";
-           
+
             int x = this.paintPanel.Width / 4;
             int y = this.paintPanel.Height / 4;
-           
+
             Shapes Triangle = factory.getShape(shape);
             Triangle.set(brushColor, moveX ?? x, moveY ?? y, side1, side2);
             Triangle.draw(graphics);
         }
-        private void drawRectangle(int length,int breadth)
+        private void drawRectangle(int length, int breadth)
         {
             string shape = "rectangle";
             int x = this.paintPanel.Width / 7;
@@ -276,7 +288,7 @@ namespace GPLAssignment
         }
         private void moveTo(int x, int y)
         {
-            
+
             moveX = x;
             moveY = y;
         }
@@ -294,18 +306,238 @@ namespace GPLAssignment
         }
         private void multilineExecuteButton_Click(object sender, EventArgs e)
         {
-            string commands = this.multilineCommandTextBox.Text;
-            Console.WriteLine(commands);
+            string multipleCommands = this.multilineCommandTextBox.Text;
 
-            foreach (var command in commands.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
+            Dictionary<string, int> variabes = new Dictionary<string, int>();
+            Dictionary<string, HashSet<string>> executions = new Dictionary<string, HashSet<string>>();
+            foreach (var commands in multipleCommands.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
             {
-                executeCommand(command);
+
+                bool isExecutionPending = false;
+                bool isVeriableDeclrationPending = false;
+                string lastExecutionCommand = null;
+                foreach (var command in commands.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries))
+                {
+
+                    if (isVeriableDeclrationPending)
+                    {
+                        try
+                        {
+                            Console.WriteLine(command);
+                            int value = Int16.Parse(command);
+                            Console.WriteLine(value);
+                            if (variabes.ContainsKey(lastExecutionCommand)) variabes[lastExecutionCommand] = value;
+                            else variabes.Add(lastExecutionCommand, value);
+                            isVeriableDeclrationPending = false;
+                        }
+                        catch (Exception ignore)
+                        {
+                            MessageBox.Show("Input error.");
+                            variabes.Add(lastExecutionCommand, 0);
+                            isVeriableDeclrationPending = false;
+                        }
+                    }
+                    else if (isSpecialChar(command))
+                    {
+
+                    }
+                    else if (isExecutableChar(command))
+                    {
+                        isExecutionPending = true;
+                        if (executions.ContainsKey(command)) executions[command] = new HashSet<string>();
+                        else executions.Add(command, new HashSet<string>());
+                        lastExecutionCommand = command;
+                    }
+                    else if (command == "=")
+                    {
+                        isVeriableDeclrationPending = true;
+                    }
+                    else
+                    {
+                        if (null != lastExecutionCommand && isExecutionPending)
+                        {
+                            if (!executions.ContainsKey(lastExecutionCommand)) executions.Add(lastExecutionCommand, new HashSet<string>());
+                            executions[lastExecutionCommand].Add(command);
+                        }
+                        else lastExecutionCommand = command;
+                    }
+
+
+                }
+
+                foreach (var command in executions.Keys)
+                {
+                    HashSet<string> values = executions[command];
+                    if("CIRCLE" == command)
+                    {
+                        if(values == null || values.Count == 0 || values.First() == null)
+                        {
+                            MessageBox.Show("Input error. Could not draw circle");
+                        }
+                        else
+                        {
+                            int radius = 0;
+                            if (variabes.ContainsKey(values.First()))
+                            {
+                                radius = variabes[values.First()];
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    radius = Int16.Parse(values.First());
+                                }
+                                catch (Exception ignore) { }
+                            }
+                            drawCircle(radius);
+                        }
+                    }else if("RECTANGLE" == command)
+                    {
+                        if (values == null || values.Count < 2 || values.First() == null || values.Last() == null)
+                        {
+                            MessageBox.Show("Input error. Could not draw rectangle");
+                        }
+                        else
+                        {
+                            int width = 0;
+                            int height = 0;
+
+                            if (variabes.ContainsKey(values.First()) && variabes.ContainsKey(values.Last()))
+                            {
+                                width = variabes[values.First()];
+                                height = variabes[values.Last()];
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    width = Int16.Parse(values.First());
+                                    height = Int16.Parse(values.Last());
+                                }
+                                catch (Exception ignore) { }
+                            }
+
+                            drawRectangle(width, height);
+                        }
+                    }
+                    else if ("TRIANGLE" == command)
+                    {
+                        if (values == null || values.Count < 2 || values.First() == null || values.Last() == null)
+                        {
+                            MessageBox.Show("Input error. Could not draw rectangle");
+                        }
+                        else
+                        {
+                            int width = 0;
+                            int height = 0;
+
+                            if (variabes.ContainsKey(values.First()) && variabes.ContainsKey(values.Last()))
+                            {
+                                width = variabes[values.First()];
+                                height = variabes[values.Last()];
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    width = Int16.Parse(values.First());
+                                    height = Int16.Parse(values.Last());
+                                }
+                                catch (Exception ignore) { }
+                            }
+
+                            drawTriangle(width, height);
+                        }
+                    }
+                    else if ("MOVETO" == command)
+                    {
+                        if (values == null || values.Count < 2 || values.First() == null || values.Last() == null)
+                        {
+                            MessageBox.Show("Input error. Could not draw rectangle");
+                        }
+                        else
+                        {
+                            int width = 0;
+                            int height = 0;
+
+                            if (variabes.ContainsKey(values.First()) && variabes.ContainsKey(values.Last()))
+                            {
+                                width = variabes[values.First()];
+                                height = variabes[values.Last()];
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    width = Int16.Parse(values.First());
+                                    height = Int16.Parse(values.Last());
+                                }
+                                catch (Exception ignore) { }
+                            }
+
+                            moveTo(width, height);
+                        }
+                    }
+                    else if ("DRAWTO" == command)
+                    {
+                        if (values == null || values.Count < 2 || values.First() == null || values.Last() == null)
+                        {
+                            MessageBox.Show("Input error. Could not draw rectangle");
+                        }
+                        else
+                        {
+                            int width = 0;
+                            int height = 0;
+
+                            if (variabes.ContainsKey(values.First()) && variabes.ContainsKey(values.Last()))
+                            {
+                                width = variabes[values.First()];
+                                height = variabes[values.Last()];
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    width = Int16.Parse(values.First());
+                                    height = Int16.Parse(values.Last());
+                                }
+                                catch (Exception ignore) { }
+                            }
+
+                            drawTo(width, height);
+                        }
+                    }else
+                    {
+                        executeCommand(command);
+                    }
+
+                }
+
+                // executeCommand(command);
+
             }
+        }
+
+        private HashSet<string> specialChars = new HashSet<string> { "IF", "LOOP", "ENDIF", "ENDLOOP" };
+        private HashSet<string> executableChar = new HashSet<string>
+        {
+            "CIRCLE", "TRIANGLE", "RECTANGLE", "DRAWTO",  "MOVETO", "CLEAR", "RESET"
+        };
+
+        private bool isSpecialChar(string command)
+        {
+            return specialChars.Contains(command);
+        }
+
+        private bool isExecutableChar(string command)
+        {
+            Console.WriteLine(command);
+            return executableChar.Contains(command);
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -331,9 +563,9 @@ namespace GPLAssignment
                     multilineCommandTextBox.Text = lines;
                     sw.Close();
                     fileStream.Close();
-                   
+
                 }
-               
+
 
             }
             catch (FileNotFoundException)
@@ -356,7 +588,7 @@ namespace GPLAssignment
             sfd.FileName = "*.txt";
             sfd.DefaultExt = "txt";
             sfd.Filter = "txt files (*.txt)| *.txt";
-            if (sfd.ShowDialog() ==DialogResult.OK)
+            if (sfd.ShowDialog() == DialogResult.OK)
             {
                 Stream fileStream = sfd.OpenFile();
                 StreamWriter sw = new StreamWriter(fileStream);
@@ -369,12 +601,12 @@ namespace GPLAssignment
 
         private async Task label1_ClickAsync(object sender, EventArgs e)
         {
-           
-    }
+
+        }
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://github.com/yugesh100/GPLassignment");
         }
     }
-    }
+}
 
