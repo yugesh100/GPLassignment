@@ -232,10 +232,15 @@ namespace GPLAssignment
 
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="param1">to check valid command</param>
+        /// <param name="param2">to check valid command</param>
+        /// <returns></returns>
         private bool validateInput(string param1, string param2)
         {
-            if (!param1.All(char.IsNumber) || !param2.All(char.IsNumber)) ///to check valid command
+            if (!param1.All(char.IsNumber) || !param2.All(char.IsNumber)) 
             {
                 MessageBox.Show("Input error .please type number only ");
                 return false;
@@ -243,10 +248,14 @@ namespace GPLAssignment
 
             return true;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="param1">to check parameter validity</param>
+        /// <returns></returns>
         private bool validateInput(string param1)
         {
-            if (!param1.All(char.IsNumber))/// to check valid command
+            if (!param1.All(char.IsNumber))
             {
                 MessageBox.Show("Input error .please type number only ");
                 return false;
@@ -254,7 +263,11 @@ namespace GPLAssignment
 
             return true;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="side1">width of triangle </param>
+        /// <param name="side2">height of triangle</param>
         private void drawTriangle(int side1, int side2)
         {
             string shape = "triangle";
@@ -266,6 +279,7 @@ namespace GPLAssignment
             Triangle.set(brushColor, moveX ?? x, moveY ?? y, side1, side2);
             Triangle.draw(graphics);
         }
+        
         private void drawRectangle(int length, int breadth)
         {
             string shape = "rectangle";
@@ -304,15 +318,21 @@ namespace GPLAssignment
             moveX = x;
             moveY = y;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender">multiplelinecommandtextBox</param>
+        /// <param name="e"></param>
         private void multilineExecuteButton_Click(object sender, EventArgs e)
         {
             string multipleCommands = this.multilineCommandTextBox.Text;
 
             Dictionary<string, int> variabes = new Dictionary<string, int>();
-            Dictionary<string, HashSet<string>> executions = new Dictionary<string, HashSet<string>>();
+           
             foreach (var commands in multipleCommands.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
             {
-
+                Dictionary<string, HashSet<string>> executions = new Dictionary<string, HashSet<string>>();
                 bool isExecutionPending = false;
                 bool isVeriableDeclrationPending = false;
                 string lastExecutionCommand = null;
@@ -358,6 +378,7 @@ namespace GPLAssignment
                         {
                             if (!executions.ContainsKey(lastExecutionCommand)) executions.Add(lastExecutionCommand, new HashSet<string>());
                             executions[lastExecutionCommand].Add(command);
+                            
                         }
                         else lastExecutionCommand = command;
                     }
@@ -387,7 +408,9 @@ namespace GPLAssignment
                                 {
                                     radius = Int16.Parse(values.First());
                                 }
-                                catch (Exception ignore) { }
+                                catch (Exception ignore) {
+                                    MessageBox.Show("Input error");
+                                }
                             }
                             drawCircle(radius);
                         }
@@ -414,7 +437,9 @@ namespace GPLAssignment
                                     width = Int16.Parse(values.First());
                                     height = Int16.Parse(values.Last());
                                 }
-                                catch (Exception ignore) { }
+                                catch (Exception ignore) {
+                                    MessageBox.Show("Input error");
+                                }
                             }
 
                             drawRectangle(width, height);
@@ -443,7 +468,9 @@ namespace GPLAssignment
                                     width = Int16.Parse(values.First());
                                     height = Int16.Parse(values.Last());
                                 }
-                                catch (Exception ignore) { }
+                                catch (Exception ignore) {
+                                    MessageBox.Show("Input error");
+                                }
                             }
 
                             drawTriangle(width, height);
@@ -472,7 +499,9 @@ namespace GPLAssignment
                                     width = Int16.Parse(values.First());
                                     height = Int16.Parse(values.Last());
                                 }
-                                catch (Exception ignore) { }
+                                catch (Exception ignore) {
+                                    MessageBox.Show("Input error");
+                                }
                             }
 
                             moveTo(width, height);
@@ -501,7 +530,9 @@ namespace GPLAssignment
                                     width = Int16.Parse(values.First());
                                     height = Int16.Parse(values.Last());
                                 }
-                                catch (Exception ignore) { }
+                                catch (Exception ignore) {
+                                    MessageBox.Show("Input error");
+                                }
                             }
 
                             drawTo(width, height);
@@ -605,7 +636,32 @@ namespace GPLAssignment
         }
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
+           
+        }
+
+        private void versionControlOnlineToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             System.Diagnostics.Process.Start("https://github.com/yugesh100/GPLassignment");
+        }
+
+        private void xMLDocumentationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"C:\Users\Administrator\source\repos\Assignment2\Assignment2\bin\Debug\Assignment1.xml");
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("copyright 2019 Access to .Net Framework by using visual studio and coded using c#");
+        }
+
+        private void uMLDiagramToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"file:///C:/Users/Administrator/source/repos/Assignment2/designs/uml%20diagram.pdf");
+        }
+
+        private void versionControlScreenShotToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"C:\Users\Administrator\source\repos\Assignment2\document\version control of gpl assignment.PNG");
         }
     }
 }

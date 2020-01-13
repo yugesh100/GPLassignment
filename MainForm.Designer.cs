@@ -51,6 +51,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.saveFileDialog2 = new System.Windows.Forms.SaveFileDialog();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xMLDocumentationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uMLDiagramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.versionControlScreenShotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.versionControlOnlineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -112,9 +117,15 @@
             // 
             // helpToolStripMenuItem
             // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem,
+            this.xMLDocumentationToolStripMenuItem,
+            this.uMLDiagramToolStripMenuItem,
+            this.versionControlScreenShotToolStripMenuItem,
+            this.versionControlOnlineToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(121, 24);
-            this.helpToolStripMenuItem.Text = "version control";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(52, 24);
+            this.helpToolStripMenuItem.Text = "help";
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
             // multilineCommandTextBox
@@ -263,6 +274,41 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "MultipleLineCommandBox";
             // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // xMLDocumentationToolStripMenuItem
+            // 
+            this.xMLDocumentationToolStripMenuItem.Name = "xMLDocumentationToolStripMenuItem";
+            this.xMLDocumentationToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
+            this.xMLDocumentationToolStripMenuItem.Text = "XML documentation";
+            this.xMLDocumentationToolStripMenuItem.Click += new System.EventHandler(this.xMLDocumentationToolStripMenuItem_Click);
+            // 
+            // uMLDiagramToolStripMenuItem
+            // 
+            this.uMLDiagramToolStripMenuItem.Name = "uMLDiagramToolStripMenuItem";
+            this.uMLDiagramToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
+            this.uMLDiagramToolStripMenuItem.Text = "UML Diagram";
+            this.uMLDiagramToolStripMenuItem.Click += new System.EventHandler(this.uMLDiagramToolStripMenuItem_Click);
+            // 
+            // versionControlScreenShotToolStripMenuItem
+            // 
+            this.versionControlScreenShotToolStripMenuItem.Name = "versionControlScreenShotToolStripMenuItem";
+            this.versionControlScreenShotToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
+            this.versionControlScreenShotToolStripMenuItem.Text = "version control screen shot";
+            this.versionControlScreenShotToolStripMenuItem.Click += new System.EventHandler(this.versionControlScreenShotToolStripMenuItem_Click);
+            // 
+            // versionControlOnlineToolStripMenuItem
+            // 
+            this.versionControlOnlineToolStripMenuItem.Name = "versionControlOnlineToolStripMenuItem";
+            this.versionControlOnlineToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
+            this.versionControlOnlineToolStripMenuItem.Text = "version control online";
+            this.versionControlOnlineToolStripMenuItem.Click += new System.EventHandler(this.versionControlOnlineToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -320,6 +366,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog2;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem xMLDocumentationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem uMLDiagramToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem versionControlScreenShotToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem versionControlOnlineToolStripMenuItem;
     }
 }
 
